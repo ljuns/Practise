@@ -27,7 +27,7 @@
 
 2. BottomSheet 的根布局（比如 id 为 view_bottom_sheet）需要添加如下属性：
 
-1. ``` xml
+   ``` xml
    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
        xmlns:app="http://schemas.android.com/apk/res-auto"
        android:id="@+id/view_bottom_sheet"
