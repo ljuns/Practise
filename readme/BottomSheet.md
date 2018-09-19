@@ -1,8 +1,9 @@
 # Bottom Sheet
 
 <div align="center">
-    <img src="image/bottomsheet.gif" width="30%" height="25%"/>
+    <img src="../image/bottomsheet.gif" width="30%" height="25%"/>
 </div>
+
 
 ### BottomSheetBehavior
 
