@@ -1,9 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".databinding.DataBindingActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</android.support.constraint.ConstraintLayout>
+    <!-- class="TestBinding"：定义生成的 ViewDataBinding 名字-->
+    <data class="TestBinding">
+
+        <import
+            alias="User1"
+            type="com.itscoder.ljuns.practise.databinding.model.User" />
+        <import
+            alias="User2"
+            type="com.itscoder.ljuns.practise.databinding.model.User" />
+        <import type="android.view.View" />
+        <variable
+            name="user1"
+            type="User1" />
+
+        <variable
+            name="user2"
+            type="User2" />
+
+        <variable
+            name="user3"
+            type="com.itscoder.ljuns.practise.databinding.model.User" />
+
+        <variable
+            name="imgUrl"
+            type="String" />
+    </data>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".databinding.DataBindingActivity">
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@{user1.name}"
+            android:visibility="@{user1.age >= 18 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:imgSrc="@{imgUrl}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvUserName"
+            android:contentDescription="@string/app_name" />
+    </android.support.constraint.ConstraintLayout>
+</layout>
