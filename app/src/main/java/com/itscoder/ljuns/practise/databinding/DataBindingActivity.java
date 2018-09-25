@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import com.itscoder.ljuns.practise.R;
 import com.itscoder.ljuns.practise.databinding.bind.ClickUtils;
@@ -33,6 +34,14 @@ public class DataBindingActivity extends AppCompatActivity {
         //点击事件
         binding.setActivity(this);
         binding.setClick(new ClickUtils());
+
+        Button button = new Button(this);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     /**
