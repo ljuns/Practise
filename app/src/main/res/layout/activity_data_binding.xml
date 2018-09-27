@@ -9,9 +9,6 @@
         <import
             alias="User1"
             type="com.itscoder.ljuns.practise.databinding.model.User" />
-        <import
-            alias="User2"
-            type="com.itscoder.ljuns.practise.databinding.model.User" />
         <import type="android.view.View" />
         <variable
             name="user1"
@@ -19,7 +16,7 @@
 
         <variable
             name="user2"
-            type="User2" />
+            type="com.itscoder.ljuns.practise.databinding.model.ObservableUser" />
 
         <variable
             name="user3"
@@ -40,13 +37,21 @@
         <variable
             name="task"
             type="java.util.TimerTask" />
+
+        <!-- &lt; 是 < 的转义字符-->
+        <variable
+            name="map"
+            type="android.databinding.ObservableArrayMap&lt;String, String>" />
+
+        <variable
+            name="list"
+            type="android.databinding.ObservableArrayList&lt;String>" />
     </data>
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".databinding.DataBindingActivity">
 
-        <!--android:text="@{user1.name}"-->
         <TextView
             android:id="@+id/tvUserName"
             android:layout_width="wrap_content"
@@ -57,7 +62,8 @@
             android:visibility="@{user1.age >= 18 ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="tvUserName" />
 
         <!--activity.onClick == activity::onClick-->
         <!--tvUserName：直接通过ID引用其他view-->
@@ -69,7 +75,7 @@
             android:contentDescription="@string/app_name"
             android:focusable="true"
             android:onClick="@{activity.onClick}"
-            android:visibility="@{tvUserName.getVisibility() == View.GONE ? View.VISIBLE : View.GONE}"
+            android:visibility="@{tvUserName.getVisibility() == View.VISIBLE ? View.VISIBLE : View.GONE}"
             app:imgSrc="@{imgUrl}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,12 +106,42 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn" />
 
+        <TextView
+            android:id="@+id/obleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@{user2.mName.get()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name" />
+
+        <TextView
+            android:id="@+id/tvMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text='@{map["first"]}'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/obleName" />
+
+        <TextView
+            android:id="@+id/tvList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@{list[1]}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMap" />
+
         <!--app:click="@{click}"：内部布局如果需要某对象，这里需要传入-->
         <include
             layout="@layout/view_binding"
+            app:click="@{click}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name"
-            app:click="@{click}" />
+            app:layout_constraintTop_toBottomOf="@id/tvList" />
     </android.support.constraint.ConstraintLayout>
 </layout>
