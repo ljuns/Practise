@@ -1,8 +1,10 @@
 package com.itscoder.ljuns.practise.databinding.bind;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
 import com.itscoder.ljuns.practise.BaseApplication;
+import com.itscoder.ljuns.practise.R;
 import java.util.TimerTask;
 
 /**
@@ -30,5 +32,9 @@ public class ClickUtils {
 
     public void onTaskClick(View view, TimerTask task) {
         Toast.makeText(view.getContext(), "Task onClick", Toast.LENGTH_SHORT).show();
+    }
+
+    public String getText(Context context) {
+        return context.getResources().getString(R.string.app_name);
     }
 }
