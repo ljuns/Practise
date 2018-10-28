@@ -8,5 +8,6 @@ public class JavaTest {
 
     public static void main(String[] args) {
         System.out.println(StringUtilKt.lastChar("Java"));
+        ParameterKt.test(new String[1]);
     }
 }
