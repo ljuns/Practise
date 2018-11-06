@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import com.itscoder.ljuns.practise.R
+import com.itscoder.ljuns.practise.generated.callback.OnClickListener
 import kotlinx.android.synthetic.main.activity_main2.*
 
 class Main2Activity : AppCompatActivity() {
@@ -14,9 +15,11 @@ class Main2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
-        button.setOnClickListener {
-            Log.d("Click", "OnClick")
-        }
+        button.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                Log.d("Click", "onClick")
+            }
+        })
 
         button.setOnLongClickListener {
             Log.d("Click", "OnLongClick")
