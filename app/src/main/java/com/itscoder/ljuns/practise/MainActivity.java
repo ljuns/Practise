@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.itscoder.ljuns.practise.bottomsheet.BottomSheetActivity;
+import com.itscoder.ljuns.practise.dagger2.DaggerActivity;
 import com.itscoder.ljuns.practise.databinding.DataBindingActivity;
 import com.itscoder.ljuns.practise.recyclerview.RecyclerViewActivity;
 
@@ -51,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RecyclerViewActivity.class));
+            }
+        });
+
+        findViewById(R.id.btn_dagger).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, DaggerActivity.class));
             }
         });
     }
