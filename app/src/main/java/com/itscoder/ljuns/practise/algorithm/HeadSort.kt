@@ -1,5 +1,7 @@
 package com.itscoder.ljuns.practise.algorithm
 
+import java.util.Collections.swap
+
 /**
  * Created by ljuns at 2019/1/7.
  * I am just a developer.
@@ -13,6 +15,7 @@ package com.itscoder.ljuns.practise.algorithm
 
 fun main(args: Array<String>) {
     val arr = intArrayOf(3, 1, 1, 6, 2, 4, 19)
+//    val arr = intArrayOf(9,8,7,6,5,4,3,2,1)
     headSort(arr)
 
     for (i in arr) {
@@ -49,30 +52,30 @@ fun headSort(arr: IntArray) {
  * 构建堆
  */
 fun headAdjust(arr: IntArray, i: Int, len: Int) {
-    val temp = arr[i]
+    var temp = arr[i]
     var i = i
 
-    // for (int j = 2 * i - 1; j < len; j = j * 2 -1)
+    // for (int j = 2 * i + 1; j < len; j = j * 2 + 1)
     // 2 * i + 1 表示左子节点，2 * i + 2 表示右子节点
-    val start = 2 * i + 1
-    // step (start * 2 + 1)：因为有可能子节点又不满足大顶堆了，需要再次调整
-    for ((index, value) in (start until len step (start * 2 + 1)).withIndex()) {
-        var child = value
+    var start = 2 * i + 1
+    while (start < len) {
 
         // 如果右子节点比左子节点大，用右子节点来比较
-        if (child + 1 < len && arr[child] < arr[child + 1]) {
-            child++
+        if (start + 1 < len && arr[start] < arr[start + 1]) {
+            start++
         }
 
-        // 如果右子节点比父节点大，调换位置
-        if (arr[child] > temp) {
-            arr[i] = arr[child]
-            i = child
+        // 如果子节点比父节点大，调换位置
+        if (arr[start] > temp) {
+            arr[i] = arr[start]
+            i = start
         } else {
             //父节点比子节点都大，不需要调整
             break
         }
 
+        // start * 2 + 1：因为有可能子节点又不满足大顶堆了，需要再次调整
+        start = start * 2 + 1
         arr[i] = temp
     }
 }
