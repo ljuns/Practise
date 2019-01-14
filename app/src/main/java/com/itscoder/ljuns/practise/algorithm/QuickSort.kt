@@ -7,8 +7,8 @@ package com.itscoder.ljuns.practise.algorithm
  * 例如：3, 1, 1, 6, 2, 4, 19
  * 1、定义 left 为最左边，right 为最右边；
  * 2、选定 left 位置的元素为 temp；
- * 3、用 temp 从最右边开始比较，小于等于 temp 就 right--，否则 right 位置的元素替换掉 left 的元素，并且 left++；
- * 4、用 temp 从 left 开始比较，大于等于 temp 就 left++，否则 left 位置的元素替换掉 right 的元素，并且 right--；
+ * 3、用 temp 从最右边开始比较，大于等于 temp 就 right--，否则 right 位置的元素替换掉 left 的元素，并且 left++；
+ * 4、用 temp 从 left 开始比较，小于等于 temp 就 left++，否则 left 位置的元素替换掉 right 的元素，并且 right--；
  * 5、此时以 temp 为中心分为两部分，左边的都比 temp 小，右边的都比 temp 大。
  * 左边：left 仍为最左边，right 为 temp，右边：left 为 temp+1，right 为最右边；重复2～5，直到 left >= temp 的位置
  */
@@ -27,9 +27,33 @@ package com.itscoder.ljuns.practise.algorithm
     private fun quickSort(arr: IntArray, left: Int, right: Int) {
         if (left >= right || arr.size <= 1) return
 
-        val mid = partition(arr, left, right)
+//        val mid = partition(arr, left, right)
+        val mid = partition2(arr, left, right)
         quickSort(arr, left, mid)
         quickSort(arr, mid + 1, right)
+    }
+
+    private fun partition2(arr: IntArray, left: Int, right: Int) : Int {
+        var l = left + 1
+        var r = right
+        val temp = arr[left]
+
+        while (l <= r) {
+            if (temp < arr[l] && temp > arr[r]) {
+                val t = arr[l]
+                arr[l] = arr[r]
+                arr[r] = t
+                l++
+                r--
+            }
+
+            if (temp >= arr[l]) l++
+            if (temp <= arr[r]) r--
+        }
+        arr[left] = arr[r]
+        arr[r] = temp
+
+        return r
     }
 
     private fun partition(arr: IntArray, left: Int, right: Int) : Int {
